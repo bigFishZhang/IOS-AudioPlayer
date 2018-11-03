@@ -25,9 +25,7 @@
 - (IBAction)clickPlay:(id)sender {
     NSLog(@"Play Music...");
     //    NSString* filePath = [CommonUtil bundlePath:@"131.aac"];
-    NSString* filePath = [CommonUtil bundlePath:@"131.aac"];
-    self.audioPlayer = [[AudioPlayer alloc] initWithFilePath:filePath];
-    [_audioPlayer start];
+    [self.audioPlayer start];
 }
 
 - (IBAction)clickStop:(id)sender {
@@ -35,6 +33,15 @@
     if(_audioPlayer) {
         [_audioPlayer stop];
     }
+}
+
+- (AudioPlayer *)audioPlayer
+{
+    if (!_audioPlayer) {
+        NSString* filePath = [CommonUtil bundlePath:@"111.aac"];
+        _audioPlayer = [[AudioPlayer alloc] initWithFilePath:filePath];
+    }
+    return _audioPlayer;
 }
 
 @end
